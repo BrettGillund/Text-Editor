@@ -16,9 +16,9 @@ const initdb = async () =>
 export const putDb = async (content) => {
   console.log('put db started');
   try{
-    const db = await openDB('JATE', 1)
-    const transaction = db.transaction('JATE', 'readwrite')
-    const store = transaction.objectStore('JATE')
+    const db = await openDB('jate', 1)
+    const transaction = db.transaction('jate', 'readwrite')
+    const store = transaction.objectStore('jate')
     await store.put({id: 1, content})
     console.log(content);
   }catch(err){
@@ -30,11 +30,11 @@ export const putDb = async (content) => {
 // TODO: Add logic for a method that gets all the content from the database
 export const getDb = async () => {
   try{
-    const db = await openDB('JATE', 1)
-    const transaction = db.transaction('JATE', 'readwrite')
-    const store = transaction.objectStore('JATE')
+    const db = await openDB('jate', 1)
+    const transaction = db.transaction('jate', 'readwrite')
+    const store = transaction.objectStore('jate')
     console.log('get request sucessful')
-    return await store.getAll(1)
+    return await store.getAll().values
   }catch(err){
     console.error(`getDB error ${err}`)
     throw err
